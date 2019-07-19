@@ -17,5 +17,9 @@
 
 console.log('Hello World from Webpacker')
 
-require("trix")
-require("@rails/actiontext")
+require("trix").start()
+require("@rails/actiontext").start()
+
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start()
