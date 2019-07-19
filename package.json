@@ -2,7 +2,9 @@
   "name": "artemis",
   "private": true,
   "dependencies": {
+    "@rails/actiontext": "^6.0.0-rc1",
     "@rails/webpacker": "^4.0.7",
+    "trix": "^1.0.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3"
   },
