@@ -14,7 +14,7 @@ gem 'webpacker'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
+gem 'jsonapi.rb'
 gem 'hamlit-rails'
 
 # Use Redis adapter to run Action Cable in production
