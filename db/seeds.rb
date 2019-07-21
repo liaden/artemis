@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+ActiveRecord::Base.transaction do
+  Tenant.create!(tenant_id: 1, name: 'dev-tenant')
+  Tenant.create!(tenant_id: 2, name: 'other-dev-tenant')
+end
