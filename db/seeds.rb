@@ -9,4 +9,8 @@
 ActiveRecord::Base.transaction do
   Tenant.create!(tenant_id: 1, name: 'dev-tenant')
   Tenant.create!(tenant_id: 2, name: 'other-dev-tenant')
+
+  PublicationStatus.create!(name: 'draft')
+  PublicationStatus.create!(name: 'published')
+  PublicationStatus.create!(name: 'withdrawn')
 end
