@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tenant do
     tenant_id { 1 }
-    name { 'test tenant name' }
+    sequence(:name) { |n| "test-tenant-name-#{n}" }
   end
 end
