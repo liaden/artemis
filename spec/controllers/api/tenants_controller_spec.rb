@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::TenantsController, type: :controller do
   let(:tenant) { create(:tenant) }
-  let(:tenant_id) { tenant.id }
+  let(:tenant_id) { tenant.tenant_id }
 
   describe '#index' do
     subject(:get_index) { get(:index) }
@@ -28,7 +28,7 @@ RSpec.describe Api::TenantsController, type: :controller do
   end
 
   describe '#show' do
-    subject(:show_tenant) { get(:show, params: { id: tenant_id }); response }
+    subject(:show_tenant) { get(:show, params: { tenant_id: tenant_id }); response }
 
     context 'with a tenant' do
       before { tenant }
@@ -48,7 +48,7 @@ RSpec.describe Api::TenantsController, type: :controller do
   describe '#update' do
     before { tenant }
 
-    subject(:update_tenant) { put(:update, params: { id: tenant.id, tenant: { name: 'updated-name' } }); response }
+    subject(:update_tenant) { put(:update, params: { tenant_id: tenant.tenant_id, tenant: { name: 'updated-name' } }); response }
 
     it 'updates name' do
       update_tenant
@@ -63,7 +63,7 @@ RSpec.describe Api::TenantsController, type: :controller do
   describe '#destroy' do
     before { tenant }
 
-    subject(:delete_tenant) { delete(:destroy, params: { id: tenant_id }); response }
+    subject(:delete_tenant) { delete(:destroy, params: { tenant_id: tenant_id }); response }
 
     it { expect { delete_tenant }.to change { Tenant.count }.by(-1) }
     it { is_expected.to have_http_status(:ok) }

@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_07_20_185131) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "tenants", force: :cascade do |t|
+  create_table "tenants", id: false, force: :cascade do |t|
     t.integer "tenant_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false

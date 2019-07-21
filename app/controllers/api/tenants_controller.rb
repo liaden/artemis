@@ -32,7 +32,7 @@ class Api::TenantsController < Api::ApplicationController
   end
 
   def fetch_tenant
-    Tenant.find_by(tenant_id: params.dig(:tenant, :tenant_id)) || Tenant.find(params[:id])
+    Tenant.find_by(tenant_id: params[:tenant_id])
   end
 
   def tenant_params

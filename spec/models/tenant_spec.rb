@@ -5,6 +5,11 @@ RSpec.describe Tenant, type: :model do
     it { expect(create(:tenant)).to be_a(Tenant) }
   end
 
+  describe 'tenant_id' do
+    it { expect(:tenant).to_not respond_to(:id) }
+    it { expect(Tenant.create!(name: 'x', tenant_id: 1234).tenant_id).to eq(1234) }
+  end
+
   describe 'validations' do
     subject(:tenant) { Tenant.new(tenant_attrs) }
     let(:tenant_attrs) { attributes_for(:tenant) }
