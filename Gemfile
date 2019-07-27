@@ -7,8 +7,17 @@ gem 'rails', '~> 6.0.0.rc1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 
+gem 'rack-jwt'
+gem 'jwt'
+
 gem 'sass-rails', '~> 5.0'
 gem 'webpacker'
+
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'dalli'
+
+# faster memcache access for dalli
+gem 'kgio'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
