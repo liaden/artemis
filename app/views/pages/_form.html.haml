@@ -1,0 +1,24 @@
+= form_for @page do |f|
+  - if @page.invalid?
+    #error_explanation
+      %h2= "#{pluralize(@page.errors.count, "error")} prohibited this page from being saved:"
+      %ul
+        - @page.errors.full_messages.each do |msg|
+          %li= msg
+
+  - if @page.persisted?
+    .field
+      = f.label :publication_status
+      = f.text_field :publication_status, value: @page.publication_status.name, disabled: true
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :content
+    = f.rich_text_area :content
+  .actions
+    = f.submit
+    - if @page.published?
+      = f.submit value: t('helpers.submit.page.unpublish')
+    - else
+      = f.submit value: t('helpers.submit.page.publish')

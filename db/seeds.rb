@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
-  Tenant.create!(tenant_id: 1, name: 'dev-tenant')
-  Tenant.create!(tenant_id: 2, name: 'other-dev-tenant')
+  Tenant.create_or_find_by(tenant_id: 1, name: 'dev-tenant')
+  Tenant.create_or_find_by(tenant_id: 2, name: 'other-dev-tenant')
 
-  PublicationStatus.create!(name: 'draft')
-  PublicationStatus.create!(name: 'published')
-  PublicationStatus.create!(name: 'withdrawn')
+  PublicationStatus.create_or_find_by(name: 'draft')
+  PublicationStatus.create_or_find_by(name: 'published')
+  PublicationStatus.create_or_find_by(name: 'withdrawn')
 end

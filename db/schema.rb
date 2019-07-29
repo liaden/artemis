@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_162935) do
+ActiveRecord::Schema.define(version: 2019_07_21_181651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 2019_07_21_162935) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.bigint "tenant_id", null: false
+    t.bigint "publication_status_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["publication_status_id"], name: "index_pages_on_publication_status_id"
+    t.index ["tenant_id"], name: "index_pages_on_tenant_id"
+  end
+
   create_table "publication_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -61,4 +71,6 @@ ActiveRecord::Schema.define(version: 2019_07_21_162935) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "pages", "publication_statuses"
+  add_foreign_key "pages", "tenants", primary_key: "tenant_id"
 end

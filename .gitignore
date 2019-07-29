@@ -17,6 +17,8 @@
 /storage/*
 !/storage/.keep
 
+/coverage
+
 /public/packs
 /public/packs-test
 /node_modules
@@ -26,6 +28,8 @@ yarn-debug.log*
 
 /public/assets
 .byebug_history
+
+/rough_draft.txt
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
