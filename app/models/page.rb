@@ -1,5 +1,12 @@
+require './lib/action_text/rich_text'
+
 class Page < ApplicationRecord
+  include Untouchable
+  include Revertable
+
   has_rich_text :content
+  has_paper_trail \
+    ignore: %i[publication_status_id tenant_id]
 
   belongs_to :tenant
   belongs_to :publication_status
@@ -13,6 +20,8 @@ class Page < ApplicationRecord
   scope :draft, -> { where(publication_status_id: PublicationStatus['draft'].id) }
   scope :withdrawn, -> { where(publication_status_id: PublicationStatus['withdrawn'].id) }
 
+  revertable_association :content
+
   def published?
     publication_status == PublicationStatus['published']
   end
@@ -25,3 +34,4 @@ class Page < ApplicationRecord
     publication_status == PublicationStatus['withdrawn']
   end
 end
+
