@@ -1,0 +1,23 @@
+---
+default: &default
+  exclude:
+    - /assets
+    - /rails
+
+  secret: <%= ENV['JWT_RSA_PUBLIC'] %>
+  verify: true
+  options:
+    algorithm: 'RS512'
+
+production: &production
+  <<: *default
+
+development: &development
+  <<: *default
+  secret: null
+  verify: false
+  options:
+    algorithm: 'none'
+
+test:
+  <<: *development

@@ -15,6 +15,7 @@ require "action_cable/engine"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 require './lib/rack/jwt/cookie'
+require './lib/token'
 
 Bundler.require(*Rails.groups)
 
@@ -24,7 +25,9 @@ module Artemis
 
     config.generators.system_tests = nil
 
-    config.middleware.use Rack::JWT::Auth, { exclude: [ '/assets' ], secret: nil, verify: false, options: { algorithm: 'none' } }
+    Token.config = config_for('jwt-auth')
+
+    config.middleware.use Rack::JWT::Auth, Token.config
     config.middleware.insert_before(Rack::JWT::Auth, Rack::JWT::Cookie) unless Rails.env.production?
 
     config.active_storage.variant_processor = :vips
